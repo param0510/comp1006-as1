@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved!</title>
+    <title>Saving your data...</title>
 </head>
 <body>
 
@@ -34,5 +34,8 @@
         echo "<h1>Your data was saved.</h1>";
         echo "<h2>Thank you!</h2>";
     ?>
+    <p>
+        <a href="http://localhost/comp1006/assignment1/content.php" >Click here to see the updated list</a>
+    </p>
 </body>
 </html>
