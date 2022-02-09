@@ -11,7 +11,7 @@
     <form action="saved.php" method="post">
         <fieldset>
             <label for="sin">Enter your SIN:</label>
-            <input type="number" name="sin" id="sin">
+            <input type="number" name="sin" id="sin"  min="2000000" max="9999999">
         </fieldset>
         <fieldset>
             <label for="name">Enter your Name:</label>
@@ -40,7 +40,7 @@
         </fieldset>
         <fieldset>
             <label for="income">Enter your Annual Income:</label>
-            <input type="number" name="income" id="income">
+            <input type="number" name="income" id="income"  min="10000" max="999999">
         </fieldset>
         <button>Submit</button>
     </form>
