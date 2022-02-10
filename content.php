@@ -5,40 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration List</title>
+    <style>
+        td,th{
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>List of Registered people!</h1>
     <p>
         <a href="http://localhost/comp1006/assignment1">Click here to register!!!</a>
     </p>
-    <table>
+    <table border = "6">
         <thead>
             <tr>
                 <th>Serial No</th>
-                <th>SIN</th>
-                <th>Full Name</th>
+                <!-- <th>SIN</th> -->
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Year of Birth</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Province</th>
+                <th>Postal Code</th>
                 <th>Residency</th>
-                <th>Annual Income</th>
             </tr>
         </thead>
         <tbody>
             <?php
                 $db=new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "SELECT * FROM residents INNER JOIN residenceTypes ON residents.residenceId = residenceTypes.residenceId";
+                $sql = "SELECT * FROM applicants INNER JOIN residenceTypes ON applicants.residenceId = residenceTypes.residenceId
+                                     INNER JOIN states ON applicants.stateId = states.stateId";
                 $cmd = $db->prepare($sql);
                 $cmd->execute();
-                $residents=$cmd->fetchAll();
+                $applicants=$cmd->fetchAll();
 
-                foreach ($residents as $resident) {
+
+                foreach ($applicants as $applicant) {
                     echo '<tr>';
-                    echo   '<td>' . $resident['serialNo'] . '</td>
-                            <td>' . $resident['sinNumber'] . '</td>
-                            <td>' . $resident['name'] . '</td>
-                            <td>' . $resident['yearOfBirth'] . '</td>
-                            <td>' . $resident['type'] . '</td>
-                            <td>' . $resident['annualIncome'] . '</td>';
+                    echo   '<td>' . $applicant['serialNo'] . '</td>
+                            <td>' . $applicant['studentId'] . '</td>
+                            <td>' . $applicant['firstName'] . '</td>
+                            <td>' . $applicant['lastName'] . '</td>
+                            <td>' . $applicant['yearOfBirth'] . '</td>
+                            <td>' . $applicant['address'] . '</td>
+                            <td>' . $applicant['city'] . '</td>
+                            <td>' . $applicant['stateName'] . '</td>
+                            <td>' . $applicant['postalCode'] . '</td>
+                            <td>' . $applicant['type'] . '</td>';
                     echo '</tr>';
                 }
                 $db = null;

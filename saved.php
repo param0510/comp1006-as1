@@ -12,20 +12,33 @@
     <?php
         $db=new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
         $sin = $_POST['sin'];
-        $name = $_POST['name'];
-        $yob = $_POST['yob'];
-        $residenceId = $_POST['residenceId'];
-        $income = $_POST['income'];
+        $fName = $_POST['fName'];
+        $lName = $_POST['lName'];
 
-        $sql = "INSERT INTO residents (sinNumber,name,yearOfBirth,residenceId,annualIncome) 
-                            VALUES (:sin,:name,:yob,:residenceId,:income)";
+        $yob = $_POST['yob'];
+        $studentId = $_POST['studentId'];
+        $add = $_POST['add'];
+        $city = $_POST['city'];
+        $stateId = $_POST['stateId'];
+        $pCode = $_POST['pCode'];
+        $residenceId = $_POST['residenceId'];
+        // $income = $_POST['income'];
+
+        $sql = "INSERT INTO 
+        applicants (sinNumber,firstName,lastName,yearOfBirth,studentId,address,city,stateId,postalCode,residenceId) 
+        VALUES (:sin,:fName,:lName,:yob,:studentId,:address,:city,:stateId,:postalCode,:residenceId)";
         $cmd = $db->prepare($sql);
 
         $cmd->bindParam(':sin',$sin,PDO::PARAM_INT);
-        $cmd->bindParam(':name',$name,PDO::PARAM_STR,50);
+        $cmd->bindParam(':fName',$fName,PDO::PARAM_STR,50);
+        $cmd->bindParam(':lName',$lName,PDO::PARAM_STR,50);
         $cmd->bindParam(':yob',$yob,PDO::PARAM_INT);
+        $cmd->bindParam(':studentId',$studentId,PDO::PARAM_INT);
+        $cmd->bindParam(':address',$add,PDO::PARAM_STR,100);
+        $cmd->bindParam(':city',$city,PDO::PARAM_STR,60);
+        $cmd->bindParam(':stateId',$stateId,PDO::PARAM_INT);
+        $cmd->bindParam(':postalCode',$pCode,PDO::PARAM_STR,7);
         $cmd->bindParam(':residenceId',$residenceId,PDO::PARAM_INT);
-        $cmd->bindParam(':income',$income,PDO::PARAM_INT);
 
         $cmd->execute();
 
