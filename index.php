@@ -15,10 +15,10 @@
     <form action="saved.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <label for="fName">Enter your First Name: </label>
-            <input type="text" name="fName" id="fName" required>
+            <input type="text" name="fName" id="fName" required minlength="2" maxlength="50">
 
             <label for="lName">Enter your Last Name: </label>
-            <input type="text" name="lName" id="lName" required>
+            <input type="text" name="lName" id="lName" required minlength="2" maxlength="50">
         </fieldset>
         <fieldset>
             <label for="yob">Enter your Year of Birth: </label>
@@ -32,7 +32,7 @@
         </fieldset>
         <fieldset>
             <label for="cName">Enter your College Name: </label>
-            <input type="text" name="cName" id="cName" required maxlength="100">
+            <input type="text" name="cName" id="cName" required maxlength="100" minlength="5">
         </fieldset>
         <fieldset>
             <label for="add">Enter your Address: </label>
@@ -44,13 +44,15 @@
             <label for="stateId">Enter your Province: </label>
             <select name="stateId" id="stateId">
                 <?php
-                    $db = new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
+                    // $db = new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
+                    include 'db_connection.php';
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $sql = "SELECT * FROM states";
                     $cmd = $db->prepare($sql);
                     $cmd->execute();
                     $states = $cmd->fetchAll();
-                    foreach ($states as $state ) {
+                    foreach ($states as $state ) 
+                    {
                         echo '<option value="'.$state['stateId'].'">'.$state['stateName'].'</option>';
                     }
                     $db = null;
@@ -65,13 +67,15 @@
             <label for="residenceId">Choose your Residency:</label>
             <select name="residenceId" id="residenceId">
                 <?php
-                    $db= new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
+                    // $db= new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
+                    include 'db_connection.php';
                     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $sql = "SELECT * FROM residenceTypes";
                     $cmd = $db->prepare($sql);
                     $cmd->execute();
                     $residenceTypes = $cmd->fetchAll();
-                    foreach ($residenceTypes as $residenceType ) {
+                    foreach ($residenceTypes as $residenceType ) 
+                    {
                         echo '<option value="'.$residenceType['residenceId'].'">'. $residenceType['type']. '</option>';
                     }
                     $db = null;

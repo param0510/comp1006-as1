@@ -34,31 +34,41 @@
         </thead>
         <tbody>
             <?php
-                $db=new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "SELECT * FROM applicants INNER JOIN residenceTypes ON applicants.residenceId = residenceTypes.residenceId
-                                     INNER JOIN states ON applicants.stateId = states.stateId";
-                $cmd = $db->prepare($sql);
-                $cmd->execute();
-                $applicants=$cmd->fetchAll();
+                try
+                {
+                    // $db=new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
+                    include 'db_connection.php';
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $sql = "SELECT * FROM applicants INNER JOIN residenceTypes ON applicants.residenceId = residenceTypes.residenceId
+                                                    INNER JOIN states ON applicants.stateId = states.stateId
+                            ORDER BY studentId ";
+                    $cmd = $db->prepare($sql);
+                    $cmd->execute();
+                    $applicants=$cmd->fetchAll();
 
 
-                foreach ($applicants as $applicant) {
-                    echo '<tr>';
-                    echo   '<td>' . $applicant['studentId'] . '</td>
-                            <td> <img src="img/' . $applicant['photo'] . '" alt = "applicant_image" style="width:100px;"></td>
-                            <td>' . $applicant['firstName'] . '</td>
-                            <td>' . $applicant['lastName'] . '</td>
-                            <td>' . $applicant['yearOfBirth'] . '</td>
-                            <td>' . $applicant['collegeName'] . '</td>
-                            <td>' . $applicant['address'] . '</td>
-                            <td>' . $applicant['city'] . '</td>
-                            <td>' . $applicant['stateName'] . '</td>
-                            <td>' . $applicant['postalCode'] . '</td>
-                            <td>' . $applicant['type'] . '</td>';
-                    echo '</tr>';
+                    foreach ($applicants as $applicant) {
+                        echo '<tr>';
+                        echo   '<td>' . $applicant['studentId'] . '</td>
+                                <td> <img src="img/' . $applicant['photo'] . '" alt = "applicant_image" style="width:100px;"></td>
+                                <td>' . $applicant['firstName'] . '</td>
+                                <td>' . $applicant['lastName'] . '</td>
+                                <td>' . $applicant['yearOfBirth'] . '</td>
+                                <td>' . $applicant['collegeName'] . '</td>
+                                <td>' . $applicant['address'] . '</td>
+                                <td>' . $applicant['city'] . '</td>
+                                <td>' . $applicant['stateName'] . '</td>
+                                <td>' . $applicant['postalCode'] . '</td>
+                                <td>' . $applicant['type'] . '</td>';
+                        echo '</tr>';
+                    }
+                    $db = null;
                 }
-                $db = null;
+                catch(Exception $e)
+                {
+                    echo '<h3>!!!!Error!!!!</h3> <h4> Message: '.$e->getMessage().'</h4>';
+                    // exit();
+                }
             ?>
         </tbody>
     </table>
