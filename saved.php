@@ -11,29 +11,53 @@
 
     <?php
         $db=new PDO('mysql:host=127.0.0.1;dbname=php_assignment','root','');
-        $sin = $_POST['sin'];
         $fName = $_POST['fName'];
         $lName = $_POST['lName'];
 
         $yob = $_POST['yob'];
         $studentId = $_POST['studentId'];
+        $cName = $_POST['cName'];
         $add = $_POST['add'];
         $city = $_POST['city'];
         $stateId = $_POST['stateId'];
         $pCode = $_POST['pCode'];
         $residenceId = $_POST['residenceId'];
-        // $income = $_POST['income'];
+
+        //Trial of image insertion 
+        $photo = null;
+        
+        // get the file name
+        $photo = $_FILES['photo']['name'];
+
+        // get temp location
+        $tmp_name = $_FILES['photo']['tmp_name'];
+
+        // verify file is an image
+
+        // $type = mime_content_type($tmp_name);
+        // if ($type != "image/png" && $type != "image/jpeg") {
+        //     echo 'Please upload a .jpg or .png file<br />';
+        //     $ok = false;
+        // }
+        // else {
+            
+            // file is valid so move to img/game-uploads using the session Id
+            move_uploaded_file($tmp_name, "img/$photo");
+
+        // }
+        // }
 
         $sql = "INSERT INTO 
-        applicants (sinNumber,firstName,lastName,yearOfBirth,studentId,address,city,stateId,postalCode,residenceId) 
-        VALUES (:sin,:fName,:lName,:yob,:studentId,:address,:city,:stateId,:postalCode,:residenceId)";
+        applicants (studentId,photo,firstName,lastName,yearOfBirth,collegeName,address,city,stateId,postalCode,residenceId) 
+        VALUES (:studentId,:photo,:fName,:lName,:yob,:cName,:address,:city,:stateId,:postalCode,:residenceId)";
         $cmd = $db->prepare($sql);
 
-        $cmd->bindParam(':sin',$sin,PDO::PARAM_INT);
+        $cmd->bindParam(':studentId',$studentId,PDO::PARAM_INT);
+        $cmd->bindParam(':photo',$photo,PDO::PARAM_STR,100);
         $cmd->bindParam(':fName',$fName,PDO::PARAM_STR,50);
         $cmd->bindParam(':lName',$lName,PDO::PARAM_STR,50);
         $cmd->bindParam(':yob',$yob,PDO::PARAM_INT);
-        $cmd->bindParam(':studentId',$studentId,PDO::PARAM_INT);
+        $cmd->bindParam(':cName',$cName,PDO::PARAM_STR,100);
         $cmd->bindParam(':address',$add,PDO::PARAM_STR,100);
         $cmd->bindParam(':city',$city,PDO::PARAM_STR,60);
         $cmd->bindParam(':stateId',$stateId,PDO::PARAM_INT);

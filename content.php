@@ -16,15 +16,15 @@
     <p>
         <a href="http://localhost/comp1006/assignment1">Click here to register!!!</a>
     </p>
-    <table border = "6">
+    <table border = "4">
         <thead>
             <tr>
-                <th>Serial No</th>
-                <!-- <th>SIN</th> -->
                 <th>Student ID</th>
+                <th>Image</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Year of Birth</th>
+                <th>College</th>
                 <th>Address</th>
                 <th>City</th>
                 <th>Province</th>
@@ -45,11 +45,12 @@
 
                 foreach ($applicants as $applicant) {
                     echo '<tr>';
-                    echo   '<td>' . $applicant['serialNo'] . '</td>
-                            <td>' . $applicant['studentId'] . '</td>
+                    echo   '<td>' . $applicant['studentId'] . '</td>
+                            <td> <img src="img/' . $applicant['photo'] . '" alt = "applicant_image" style="width:100px;"></td>
                             <td>' . $applicant['firstName'] . '</td>
                             <td>' . $applicant['lastName'] . '</td>
                             <td>' . $applicant['yearOfBirth'] . '</td>
+                            <td>' . $applicant['collegeName'] . '</td>
                             <td>' . $applicant['address'] . '</td>
                             <td>' . $applicant['city'] . '</td>
                             <td>' . $applicant['stateName'] . '</td>

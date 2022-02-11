@@ -8,15 +8,11 @@
 </head>
 <body>
     <h1>Welcome to Online Registration</h1>
-    <h2>Get your School ID Card here.</h2>
+    <h2>Apply for Math Olympiad here!!!!!</h2>
     <p>
         <a href="http://localhost/comp1006/assignment1/content.php">Click here to see the list of Applicants</a>
     </p>
-    <form action="saved.php" method="post">
-        <fieldset>
-            <label for="sin">Enter your SIN: </label>
-            <input type="number" name="sin" id="sin"  min="2000000" max="9999999" required>
-        </fieldset>
+    <form action="saved.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <label for="fName">Enter your First Name: </label>
             <input type="text" name="fName" id="fName" required>
@@ -36,14 +32,14 @@
         </fieldset>
         <fieldset>
             <label for="cName">Enter your College Name: </label>
-            <input type="text" name="cName" id="cName" required>
+            <input type="text" name="cName" id="cName" required maxlength="100">
         </fieldset>
         <fieldset>
             <label for="add">Enter your Address: </label>
-            <input type="text" name="add" id="add" required>
+            <input type="text" name="add" id="add" required maxlength="100">
         
             <label for="city">Enter your City: </label>
-            <input type="text" name="city" id="city" required>
+            <input type="text" name="city" id="city" required maxlength="60">
         
             <label for="stateId">Enter your Province: </label>
             <select name="stateId" id="stateId">
@@ -83,17 +79,11 @@
             </select>
         </fieldset>
 
-        <!-- Try this later.... -->
-        <!-- <fieldset>
-            <label for="image">Add your image here: </label>
-            <input type="file" name="image" id="image">
-        </fieldset> -->
+        <fieldset>
+            <label for="photo">Add your photo here: </label>
+            <input type="file" name="photo" id="photo" accept=".png, .jpg,jpeg" required>
+        </fieldset>
 
-
-        <!-- <fieldset>
-            <label for="income">Enter your Annual Income:</label>
-            <input type="number" name="income" id="income"  min="10000" max="999999" required>
-        </fieldset> -->
         <button>Submit</button>
     </form>
 </body>
