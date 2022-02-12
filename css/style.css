@@ -54,7 +54,7 @@ form,.btn{
     text-shadow: 2px 2px 2px black;
 }
 /* Set the width of the image being displayed in the table */
-img{
+.img-thumbnail{
     width: 100px;
 }
 /* Styling the form inputs and select options */

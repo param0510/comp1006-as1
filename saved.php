@@ -47,13 +47,9 @@
                 // The code might look similar, but trust me I tried and tested it several times before actually getting it to work. 
                 // I got confused with the php code because you had it integrated with login credentials, but I still managed to figure it out, phew!
 
-                // Calling for session start
-                // if (session_status() == PHP_SESSION_NONE) {
-                //     session_start();
-                // }
                 // Creating a variable to store the name of the file to be uploaded to the server
                 $photo = null;
-
+                
                 // To get the file name
                 $photo = $_FILES['photo']['name'];
 
@@ -72,14 +68,22 @@
                 }
                 else 
                 {
-                    // file is valid so move/upload it to img folder on the database
-                    // $photo = session_id() . "-" . $photo;
-                    move_uploaded_file($tmp_name, "img/$photo");
-                    if (move_uploaded_file($tmp_name,"img/$photo")) {
-                        echo "Uploaded";
-                    } else {
-                        echo "File not uploaded";
+                    // file is valid so move/upload it to img folder on the aws server
+                    // I could have used a try-catch block at this place, but anyways this seems to work as well.
+                    if (move_uploaded_file($tmp_name,"img/$photo")) 
+                    {
+                        // if the image gets uploaded succesfully.... do nothing
                     }
+                    else
+                    {
+                        // If image is not uploaded successfully then display an error message
+                        // Another step of validation I learned during the process of uploading an image.
+                        echo    '<div class="alert alert-danger" role="alert">
+                                    <h3>!!!!Opps!!!!</h3>
+                                    <h4>!Image upload failed!</h4>
+                                </div>';
+                        $flag=false;
+                    } 
                 }
                 // This runs only if the data being inserted is valid and does not have any errors
                 if($flag == true)
@@ -122,7 +126,7 @@
                         // Displaying error messages, in case of error connecting to the database.
                         echo    '<div class="alert alert-danger" role="alert">
                                     <h3>!!!!Error!!!!</h3>
-                                    <h4>Sorry, your data could not be saved.<h4>
+                                    <h4>Sorry, your data could not be saved.</h4>
                                 </div>
                                 <div class="alert alert-info" role="alert">
                                     <h5> Message: '.$e->getMessage().'</h5>
