@@ -1,0 +1,132 @@
+/* I tried using some basic styling to make it bearable, but ended up making it a completely polished websit by using bootstrap! */
+/* Added to background image to the body of each of the web pages by using live links !! */
+#index{
+    background-image: url("https://d2r55xnwy6nx47.cloudfront.net/uploads/2020/09/IMO_2880x1620_Lede.jpg");
+}
+#saved{
+    background-image: url("https://www.frevvo.com/blog/wp-content/uploads/2020/01/Frevvo-Save-Data-Hero-1000x529.png");
+}
+#content {
+    background-image: url("https://images.unsplash.com/photo-1512389055488-8d82cb26ba6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGNvdmVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
+}
+/* Gave dimensions to the background image container - body of each page.. */
+/* And also gave all the text a basic white color to make it visible on the dark background */
+#index,
+#saved,
+#content{
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw ;
+    height: 100vh;
+}
+/* This was done because when the table was larger than the viewport width, image couldn't cover the whole page */
+#index > div,
+#saved > div,
+#content > div{
+    height: 100%;
+    width: 100%;
+}
+/* This was used to mask all the background image on the pages and give some padding too!! */
+#index > div > div,
+#saved > div > div,
+#content > div > div{
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.783);
+    width: 100%;
+    height: 100%;
+}
+/* gave different levels of masking to each page according to their respective backgrounds */
+#saved > div > div{
+    background-color: rgba(0, 0, 0, 0.684);
+}
+#content > div > div{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+/* Added the google fonts to the form and buttons along with some text shadow to make it more eye catching. */
+form,.btn{
+    font-family: 'Homenaje', sans-serif;
+    font-size: 20px;
+    text-shadow: 2px 2px 2px rgb(228, 10, 10);
+}
+/* Added some text shadow to the text in the links */
+.badge{
+    text-shadow: 2px 2px 2px black;
+}
+/* Set the width of the image being displayed in the table */
+img{
+    width: 100px;
+}
+/* Styling the form inputs and select options */
+input{
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+select {
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+#photo{
+    padding: 1px;
+}
+/* Setting up the width of the input boxes according to their requirements */
+#fName,#lName,#cName{
+    width: 250px;
+}
+#yob{
+    width: 100px;
+}
+#studentId{
+    width: 170px;
+}
+#add{
+    width: 500px;
+}
+/* Styled the table by setting its width and giving it a clear white border */
+#table{
+    border: 3px solid #c68700;
+    width: 90%;
+    margin: auto;
+}
+/* Gave some padding to the table cells and made the text more clear by adding some text shadow and different google fonts!!! */
+td,th{
+    padding: 5px;
+}
+#table tr th{
+    font-family: 'Timmana', sans-serif;
+    text-shadow: 1px 1px 2px red;
+    font-size: 18px;
+}
+#table tbody .stId{
+    text-shadow: 1px 1px 1px rgb(104, 255, 58);
+}
+#table tr td{
+    text-shadow: 2px 2px 10px rgb(58, 255, 229);
+
+    font-family: 'Tenali Ramakrishna', sans-serif;
+    font-size: 20px;
+}
+/* Added some padding, google fonts and enlarged the links by increasing their font size*/
+.badge{
+    font-family: 'Mali', cursive;
+    font-size: 18px;
+    padding: 9px 16px;
+}
+/* Added necessary google fonts to the headings of different webpages */
+#index div div h1{
+    font-family: 'Monoton', cursive;
+}
+#index div div h2{
+    font-family: 'Share Tech Mono', monospace;
+}
+#content div div h1{
+    text-shadow: 1px 1px 1px black;
+    color: #198d17;
+    font-family: 'Black Ops One', cursive;
+}
+.alert> h2,
+.alert> h3,
+.alert> h4,
+.alert> h5{
+    font-family: 'Della Respira', serif;
+}
